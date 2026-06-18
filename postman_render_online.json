@@ -1,0 +1,77 @@
+{
+  "info": {
+    "name": "SISTEMA CINE Render Online - Gateway",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "gateway_url",
+      "value": "https://sistema-cine-duoc-gateway.onrender.com"
+    }
+  ],
+  "item": [
+    {
+      "name": "01 Listar comentarios",
+      "request": {
+        "method": "GET",
+        "url": "{{gateway_url}}/api/comentario"
+      }
+    },
+    {
+      "name": "02 Listar confiteria",
+      "request": {
+        "method": "GET",
+        "url": "{{gateway_url}}/api/confiteria"
+      }
+    },
+    {
+      "name": "03 Listar entradas",
+      "request": {
+        "method": "GET",
+        "url": "{{gateway_url}}/api/entradas"
+      }
+    },
+    {
+      "name": "04 Listar funciones",
+      "request": {
+        "method": "GET",
+        "url": "{{gateway_url}}/api/funciones"
+      }
+    },
+    {
+      "name": "05 Listar inventario",
+      "request": {
+        "method": "GET",
+        "url": "{{gateway_url}}/api/inventario"
+      }
+    },
+    {
+      "name": "06 Listar objetos perdidos",
+      "request": {
+        "method": "GET",
+        "url": "{{gateway_url}}/api/objetosPerdidos"
+      }
+    },
+    {
+      "name": "07 Listar peliculas",
+      "request": {
+        "method": "GET",
+        "url": "{{gateway_url}}/api/peliculas/catalogo"
+      }
+    },
+    {
+      "name": "08 Listar salas",
+      "request": {
+        "method": "GET",
+        "url": "{{gateway_url}}/api/salas"
+      }
+    },
+    {
+      "name": "09 Listar usuarios",
+      "request": {
+        "method": "GET",
+        "url": "{{gateway_url}}/api/usuario"
+      }
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+services:
+  eureka-server:
+    build: ./eureka-server
+    ports:
+      - "8761:8761"
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+
+  autenthicacion:
+    build: ./autenthicacion
+    ports:
+      - "8082:8082"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+
+  comentario-service:
+    build: ./comentario-service
+    ports:
+      - "8086:8086"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+
+  confiteria-service:
+    build: ./confiteria-service
+    ports:
+      - "8089:8089"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+
+  entrada-service:
+    build: ./entrada-service
+    ports:
+      - "8085:8085"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+
+  funciones-service:
+    build: ./funciones-service
+    ports:
+      - "8084:8084"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+
+  inventario-service:
+    build: ./inventario-service
+    ports:
+      - "8087:8087"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+
+  objetos-perdidos-service:
+    build: ./objetos-perdidos-service
+    ports:
+      - "8090:8090"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+
+  pelicula:
+    build: ./pelicula
+    ports:
+      - "8083:8083"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+
+  sala-service:
+    build: ./sala-service
+    ports:
+      - "8088:8088"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+
+  usuario-service:
+    build: ./usuario-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/

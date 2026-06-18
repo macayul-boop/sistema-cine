@@ -1,0 +1,73 @@
+{
+  "info": {
+    "name": "Etapas 02 a 05 - API Gateway puerto 8080",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 GET comentarios por Gateway",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/comentario"
+      }
+    },
+    {
+      "name": "02 GET confiteria por Gateway",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/confiteria"
+      }
+    },
+    {
+      "name": "03 GET entradas por Gateway",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/entradas"
+      }
+    },
+    {
+      "name": "04 GET funciones por Gateway",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/funciones"
+      }
+    },
+    {
+      "name": "05 GET inventario por Gateway",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/inventario"
+      }
+    },
+    {
+      "name": "06 GET objetos perdidos por Gateway",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/objetosPerdidos"
+      }
+    },
+    {
+      "name": "07 GET peliculas por Gateway",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/peliculas/catalogo"
+      }
+    },
+    {
+      "name": "08 GET salas por Gateway",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/salas"
+      }
+    },
+    {
+      "name": "09 GET usuarios por Gateway",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/usuario"
+      }
+    }
+  ]
+}
+
+

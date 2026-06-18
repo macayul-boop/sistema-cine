@@ -1,0 +1,131 @@
+services:
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - autenthicacion
+      - comentario-service
+      - confiteria-service
+      - entrada-service
+      - funciones-service
+      - inventario-service
+      - objetos-perdidos-service
+      - pelicula
+      - sala-service
+      - usuario-service
+    environment:
+      - EUREKA_ENABLED=false
+      - AUTENTICACION_SERVICE_URL=http://autenthicacion:8082
+      - COMENTARIO_SERVICE_URL=http://comentario-service:8086
+      - CONFITERIA_SERVICE_URL=http://confiteria-service:8089
+      - ENTRADA_SERVICE_URL=http://entrada-service:8085
+      - FUNCIONES_SERVICE_URL=http://funciones-service:8084
+      - INVENTARIO_SERVICE_URL=http://inventario-service:8087
+      - OBJETO_PERDIDO_SERVICE_URL=http://objetos-perdidos-service:8090
+      - PELICULA_SERVICE_URL=http://pelicula:8083
+      - SALA_SERVICE_URL=http://sala-service:8088
+      - USUARIO_SERVICE_URL=http://usuario-service:8081
+
+  autenthicacion:
+    build: ./autenthicacion
+    depends_on:
+      - usuario-service
+    ports:
+      - "8082:8082"
+    environment:
+      - EUREKA_ENABLED=false
+      - APP_DISCOVERY_ENABLED=false
+      - USUARIO_SERVICE_URL=http://usuario-service:8081
+
+  comentario-service:
+    build: ./comentario-service
+    ports:
+      - "8086:8086"
+    depends_on:
+      - usuario-service
+      - pelicula
+    environment:
+      - EUREKA_ENABLED=false
+      - APP_DISCOVERY_ENABLED=false
+      - USUARIO_SERVICE_URL=http://usuario-service:8081
+      - PELICULA_URL=http://pelicula:8083
+
+  confiteria-service:
+    build: ./confiteria-service
+    ports:
+      - "8089:8089"
+    depends_on:
+      - usuario-service
+      - inventario-service
+    environment:
+      - EUREKA_ENABLED=false
+      - APP_DISCOVERY_ENABLED=false
+      - USUARIO_SERVICE_URL=http://usuario-service:8081
+      - INVENTARIO_SERVICE_URL=http://inventario-service:8087
+
+  entrada-service:
+    build: ./entrada-service
+    ports:
+      - "8085:8085"
+    depends_on:
+      - funciones-service
+      - usuario-service
+    environment:
+      - EUREKA_ENABLED=false
+      - APP_DISCOVERY_ENABLED=false
+      - USUARIO_SERVICE_URL=http://usuario-service:8081
+      - FUNCIONES_SERVICE_URL=http://funciones-service:8084
+
+  funciones-service:
+    build: ./funciones-service
+    ports:
+      - "8084:8084"
+    depends_on:
+      - sala-service
+      - pelicula
+    environment:
+      - EUREKA_ENABLED=false
+      - APP_DISCOVERY_ENABLED=false
+      - PELICULA_URL=http://pelicula:8083
+      - SALA_SERVICE_URL=http://sala-service:8088
+
+  inventario-service:
+    build: ./inventario-service
+    ports:
+      - "8087:8087"
+    environment:
+      - EUREKA_ENABLED=false
+
+  objetos-perdidos-service:
+    build: ./objetos-perdidos-service
+    ports:
+      - "8090:8090"
+    depends_on:
+      - funciones-service
+    environment:
+      - EUREKA_ENABLED=false
+      - APP_DISCOVERY_ENABLED=false
+      - FUNCIONES_SERVICE_URL=http://funciones-service:8084
+
+  pelicula:
+      build: ./pelicula
+      ports:
+        - "8083:8083"
+      environment:
+        - EUREKA_ENABLED=false
+
+
+  sala-service:
+    build: ./sala-service
+    ports:
+      - "8088:8088"
+    environment:
+      - EUREKA_ENABLED=false
+
+  usuario-service:
+    build: ./usuario-service
+    ports:
+      - "8081:8081"
+    environment:
+      - EUREKA_ENABLED=false

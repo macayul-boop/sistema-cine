@@ -1,0 +1,74 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: autenthicacion
+          uri: ${AUTENTICACION_SERVICE_URL:lb://AUTENTHICACION}
+          predicates:
+            - Path=/api/autenticacion/**
+        - id: usuario-service
+          uri: ${USUARIO_SERVICE_URL:lb://USUARIO-SERVIC}
+          predicates:
+            - Path=/api/usuario/**
+        - id: pelicula
+          uri: ${PELICULA_SERVICE_URL:lb://PELICULA}
+          predicates:
+            - Path=/api/peliculas/**
+        - id: funciones-service
+          uri: ${FUNCIONES_SERVICE_URL:lb://FUNCIONES-SERVICE}
+          predicates:
+            - Path=/api/funciones/**
+        - id: entrada-service
+          uri: ${ENTRADA_SERVICE_URL:lb://ENTRADA-SERVICE}
+          predicates:
+            - Path=/api/entradas/**
+        - id: comentario-service
+          uri: ${COMENTARIO_SERVICE_URL:lb://COMENTARIO-SERVICE}
+          predicates:
+            - Path=/api/comentario/**
+        - id: inventario-service
+          uri: ${INVENTARIO_SERVICE_URL:lb://INVENTARIO-SERVICE}
+          predicates:
+            - Path=/api/inventario/**
+        - id: sala-service
+          uri: ${SALA_SERVICE_URL:lb://SALA-SERVICE}
+          predicates:
+            - Path=/api/salas/**
+        - id: confiteria-service
+          uri: ${CONFITERIA_SERVICE_URL:lb://CONFITERIA-SERVICE}
+          predicates:
+            - Path= /api/confiteria/**
+        - id: objetos-perdidos-service
+          uri: ${OBJETO_PERDIDO_SERVICE_URL:lb://OBJETOS-PERDIDOS-SERVICE}
+          predicates:
+            - Path=/api/objetosPerdidos/**
+
+management:
+  endpoint:
+    gateway:
+      access: read-only
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+
+
+eureka:
+  client:
+    enabled: ${EUREKA_ENABLED:true}
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true
+
+
+
+
+
+
+

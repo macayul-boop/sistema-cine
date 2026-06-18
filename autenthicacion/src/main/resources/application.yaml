@@ -1,0 +1,31 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: autenthicacion
+
+jwt:
+  secret: ClaveSuperSeguraPeroDeVerdadSuperSegura
+  expiration: 86400000
+
+logging:
+  level:
+    cl.duoc.fullstack: INFO
+    org.springframework.web: WARN
+
+eureka:
+  client:
+    enabled: ${EUREKA_ENABLED:true}
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true
+
+app:
+  discovery:
+    enabled: ${APP_DISCOVERY_ENABLED:true}
+
+services:
+  usuario:
+    url: ${USUARIO_SERVICE_URL:http://USUARIO-SERVICE}

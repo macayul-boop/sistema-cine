@@ -1,0 +1,187 @@
+# Render Blueprint educativo (Free): 6 Web Services públicos.
+# Reemplazar sistema por un identificador corto y único.
+# Eureka se conserva para Docker local, pero se desactiva en Render Free.
+services:
+  # Microservicio de Usuario
+  - type: web
+    name: sistema-cine-duoc-usuario
+    runtime: docker
+    plan: free
+    dockerfilePath: ./render/docker/usuario-service.Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+
+  # Microservicio de Pelicula
+  - type: web
+    name: sistema-cine-duoc-pelicula
+    runtime: docker
+    plan: free
+    dockerfilePath: ./render/docker/pelicula.Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+
+  # Microservicio de Salas
+  - type: web
+    name: sistema-cine-duoc-sala
+    runtime: docker
+    plan: free
+    dockerfilePath: ./render/docker/sala-service.Dockerfile # !ACA EL NOMBRE ESTA MAL ESCRITO PERO LO PUSE IGUAL!
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+
+  # Microservicio de Inventario
+  - type: web
+    name: sistema-cine-duoc-inventario
+    runtime: docker
+    plan: free
+    dockerfilePath: ./render/docker/inventario-service.Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+
+  # Microservicio de Autenticacion
+  - type: web
+    name: sistema-cine-duoc-autenticacion
+    runtime: docker
+    plan: free
+    dockerfilePath: ./render/docker/autenthicacion.Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+      - key: APP_DISCOVERY_ENABLED
+        value: false
+      - key: USUARIO_SERVICE_URL
+        value: https://sistema-cine-duoc-usuario.onrender.com
+
+  # Microservicio de Funcion
+  - type: web
+    name: sistema-cine-duoc-funcion
+    runtime: docker
+    plan: free
+    dockerfilePath: ./render/docker/funciones-service.Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+      - key: APP_DISCOVERY_ENABLED
+        value: false
+      - key: PELICULA_URL
+        value: https://sistema-cine-duoc-pelicula.onrender.com
+      - key: SALA_URL
+        value: https://sistema-cine-duoc-sala.onrender.com
+
+  # Microservicio de Entrada
+  - type: web
+    name: sistema-cine-duoc-entrada
+    runtime: docker
+    plan: free
+    dockerfilePath: ./render/docker/entrada-service.Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+      - key: APP_DISCOVERY_ENABLED
+        value: false
+      - key: FUNCIONES_SERVICE_URL
+        value: https://sistema-cine-duoc-funcion.onrender.com
+      - key: USUARIO_SERVICE_URL
+        value: https://sistema-cine-duoc-usuario.onrender.com
+
+  # Microservicio de Comentario
+  - type: web
+    name: sistema-cine-duoc-comentario
+    runtime: docker
+    plan: free
+    dockerfilePath: ./render/docker/comentario-service.Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+      - key: APP_DISCOVERY_ENABLED
+        value: false
+      - key: PELICULA_URL
+        value: https://sistema-cine-duoc-pelicula.onrender.com
+      - key: USUARIO_SERVICE_URL
+        value: https://sistema-cine-duoc-usuario.onrender.com
+
+  # Microservicio de Confiteria
+  - type: web
+    name: sistema-cine-duoc-confiteria
+    runtime: docker
+    plan: free
+    dockerfilePath: ./render/docker/confiteria-service.Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+      - key: APP_DISCOVERY_ENABLED
+        value: false
+      - key: INVENTARIO_SERVICE_URL
+        value: https://sistema-cine-duoc-inventario.onrender.com
+      - key: USUARIO_SERVICE_URL
+        value: https://sistema-cine-duoc-usuario.onrender.com
+
+  # Microservicio de Objeto Perdido
+  - type: web
+    name: sistema-cine-duoc-objeto-perdido
+    runtime: docker
+    plan: free
+    dockerfilePath: ./render/docker/objetos-perdidos-service.Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+      - key: APP_DISCOVERY_ENABLED
+        value: false
+      - key: FUNCIONES_SERVICE_URL
+        value: https://sistema-cine-duoc-funcion.onrender.com
+
+  # Microservicio de Gateway
+  - type: web
+    name: sistema-cine-duoc-gateway
+    runtime: docker
+    plan: free
+    dockerfilePath: ./render/docker/api-gateway.Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+      - key: AUTENTICACION_SERVICE_URL
+        value: https://sistema-cine-duoc-autenticacion.onrender.com
+      - key: USUARIO_SERVICE_URL
+        value: https://sistema-cine-duoc-usuario.onrender.com
+      - key: PELICULA_SERVICE_URL
+        value: https://sistema-cine-duoc-pelicula.onrender.com
+      - key: FUNCIONES_SERVICE_URL
+        value: https://sistema-cine-duoc-funcion.onrender.com
+      - key: ENTRADA_SERVICE_URL
+        value: https://sistema-cine-duoc-entrada.onrender.com
+      - key: COMENTARIO_SERVICE_URL
+        value: https://sistema-cine-duoc-comentario.onrender.com
+      - key: INVENTARIO_SERVICE_URL
+        value: https://sistema-cine-duoc-inventario.onrender.com
+      - key: SALA_SERVICE_URL
+        value: https://sistema-cine-duoc-sala.onrender.com
+      - key: CONFITERIA_SERVICE_URL
+        value: https://sistema-cine-duoc-confiteria.onrender.com
+      - key: OBJETO_PERDIDO_SERVICE_URL
+        value: https://sistema-cine-duoc-objeto-perdido.onrender.com

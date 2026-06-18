@@ -42,6 +42,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/usuario/publico/registro").permitAll()
                         .requestMatchers("/api/usuario/validar/**").permitAll()
                         .requestMatchers("/api/usuario/verificar/**").permitAll()
+                        .requestMatchers("/actuator/health").permitAll()
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(ex -> ex

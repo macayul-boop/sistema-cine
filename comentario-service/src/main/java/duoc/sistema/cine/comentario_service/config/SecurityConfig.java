@@ -42,6 +42,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT,"/api/comentario/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE,"/api/comentario/**").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/comentario/**").permitAll()
+                        .requestMatchers("/actuator/health").permitAll()
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(ex -> ex
